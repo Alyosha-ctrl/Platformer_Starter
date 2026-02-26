@@ -39,6 +39,8 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject strongPrefab;
+    public GameObject dPrefab;
+    public GameObject vPrefab;
 
     float questionTimer = 0;
 
@@ -110,6 +112,18 @@ public class LevelParser : MonoBehaviour
                 {
                     Vector3 newPosition = new Vector3(columnIndex + .5f, row + .5f, 0);
                     Transform rockInstance = Instantiate(strongPrefab, levelRoot).transform;
+                    rockInstance.position = newPosition;
+                }
+                else if(rowChars[columnIndex] == 'd')
+                {
+                    Vector3 newPosition = new Vector3(columnIndex + .5f, row + .5f, 0);
+                    Transform rockInstance = Instantiate(dPrefab, levelRoot).transform;
+                    rockInstance.position = newPosition;
+                }
+                else if(rowChars[columnIndex] == 'v')
+                {
+                    Vector3 newPosition = new Vector3(columnIndex + .5f, row + .5f, 0);
+                    Transform rockInstance = Instantiate(vPrefab, levelRoot).transform;
                     rockInstance.position = newPosition;
                 }
                 //Go for all the others, then they will be close enough

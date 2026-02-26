@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI centerText;
 
     public Transform mainCamera;
 
     //Then a bunch of child private vars for each. Each update move the apropriate ones around
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    float timerTime = 400f;
+    float timerTime = 100f;
     int score = 0;
     int coins = 0;
     void Start()
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     void setText()
     {
         timerText.text = $"Time\n{timerTime.ToString("F0")}";
+        if(timerTime <=0 && centerText.text != "YOU WIN!") lose();
         scoreText.text = $"Score\n{score}";
         coinText.text = $"Coins\n{coins}";
     }
@@ -76,5 +78,10 @@ public class GameManager : MonoBehaviour
     public void addScore(int scoreAmount)
     {
         score+=scoreAmount;
+    }
+
+    void lose()
+    {
+        centerText.text = "YOU LOSE!";
     }
 }
