@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Composites;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     float timerTime = 100f;
     int score = 0;
     int coins = 0;
+    bool hit2 = true;
     void Start()
     {
         
@@ -72,7 +74,13 @@ public class GameManager : MonoBehaviour
 
     public void addCoin()
     {
-        coins+=1;
+        if (hit2)
+        {
+            coins+=1;
+            addScore(100);
+            hit2 = false;
+        }
+        Invoke("resetHit2", 1f);
     }
 
     public void addScore(int scoreAmount)
@@ -83,5 +91,10 @@ public class GameManager : MonoBehaviour
     void lose()
     {
         centerText.text = "YOU LOSE!";
+    }
+
+    void resetHit2()
+    {
+        hit2 = true;
     }
 }

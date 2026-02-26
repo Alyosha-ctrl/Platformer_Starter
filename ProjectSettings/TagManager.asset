@@ -6,6 +6,7 @@ TagManager:
   tags:
   - brick
   - question
+  - gameManager
   layers:
   - Default
   - TransparentFX

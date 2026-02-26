@@ -12,6 +12,8 @@ public class script : MonoBehaviour
     public Transform mainCamera;
     public TextMeshProUGUI centerText;
 
+    bool hit2 = true;
+
     //Then a bunch of child private vars for each. Each update move the apropriate ones around
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     float timerTime = 100f;
@@ -72,7 +74,13 @@ public class script : MonoBehaviour
 
     public void addCoin()
     {
-        coins+=1;
+        if (hit2)
+        {
+            coins+=1;
+            addScore(100);
+            hit2 = false;
+        }
+        Invoke("resetHit2", 1f);
     }
 
     public void addScore(int scoreAmount)
@@ -82,5 +90,10 @@ public class script : MonoBehaviour
     void lose()
     {
         centerText.text = "YOU LOSE!";
+    }
+
+    void resetHit2()
+    {
+        hit2 = true;
     }
 }
